@@ -1,4 +1,3 @@
-import os
-directory = "/home/rubai/Python/projects/nova/projects"
-
-print(num_projects)
+import curses
+from curses import wrapper
+print(len("Enter New Complete Date: "))

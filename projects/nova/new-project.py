@@ -11,7 +11,7 @@ def new_project():
     project_path = input("Paste Project Path: ")
     project_descrip = input("Give A Short Description: ")
     print("1.Just Started  2:Ongoing  3:Completed")
-    project_status= int(input ("What is Project Status: "))
+    project_status= (input ("What is Project Status: "))
     created_at=  input("Creating Date: ")
     if project_status == 3:
 
@@ -32,7 +32,8 @@ def new_project():
     formated= json.dumps(project_dict, indent=6)
     f.write(formated)
     f.close
-
+if __name__ == "__main__":
+    new_project()
 
 
     

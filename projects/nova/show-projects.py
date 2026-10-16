@@ -68,6 +68,7 @@ def show_text(stdscr, current):
 
 #main code 
 def main(stdscr):
+    stdscr.keypad(True)
     directory = "/home/rubai/Python/projects/nova/projects"
     list_project(directory, stdscr)
 
@@ -75,21 +76,25 @@ def main(stdscr):
     
     # Get Project Name
     file_name = []
-    num_projects =len(os.listdir(directory))
+    num_projects = len(os.listdir(directory))
+    
+
     while True:
-        
         stdscr.addstr(num_projects, 0, "Enter The Project Name: ")
+        stdscr.clrtoeol()  # Clear the rest of the line
         stdscr.addstr(num_projects, 24, "".join(file_name))
         stdscr.refresh()
 
         key = stdscr.getch()
 
-        if key in (10, 13):  # Enter
+        if key in (10, 13, curses.KEY_ENTER):
             break
+
         elif key in (curses.KEY_BACKSPACE, 127, 8):
             if file_name:
                 file_name.pop()
-        elif 32 <= key <= 126:  # Printable ASCII characters
+
+        elif 32 <= key <= 126:
             file_name.append(chr(key))
     if len(file_name)>0:
         file_name = "".join(file_name)
