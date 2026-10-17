@@ -1,3 +1,4 @@
+import sys
 import curses
 import time
 from curses import wrapper
@@ -159,36 +160,42 @@ def save(stdscr, name, project):
 
 
 def main(stdscr):
-    directory = "/home/rubai/Python/projects/nova/projects"
-    list_project(directory, stdscr)
+    if len(sys.argv) > 1:
+            file_name = sys.argv[1]
+        
+    
+    
+    else:
+        directory = "/home/rubai/Python/projects/nova/projects"
+        list_project(directory, stdscr)
 
 #Get Project Name load and show
     
     # Get Project Name
-    file_name = []
-    num_projects =len(os.listdir(directory))
-    while True:
+        file_name = []
+        num_projects =len(os.listdir(directory))
+        while True:
         
-        stdscr.addstr(num_projects, 0, "Enter The Project Name: ")
-        stdscr.clrtoeol()  # Clear the rest of the line
-        stdscr.addstr(num_projects, 24, "".join(file_name))
-        stdscr.refresh()
+            stdscr.addstr(num_projects, 0, "Enter The Project Name: ")
+            stdscr.clrtoeol()  # Clear the rest of the line
+            stdscr.addstr(num_projects, 24, "".join(file_name))
+            stdscr.refresh()
 
-        key = stdscr.getch()
+            key = stdscr.getch()
 
-        if key in (10, 13):  # Enter
-            break
-        elif key in (curses.KEY_BACKSPACE, 127, 8):
-            if file_name:
-                file_name.pop()
-        elif 32 <= key <= 126:  # Printable ASCII characters
-            file_name.append(chr(key))
-    if len(file_name)>0:
-        file_name = "".join(file_name)
+            if key in (10, 13):  # Enter
+                break
+            elif key in (curses.KEY_BACKSPACE, 127, 8):
+                if file_name:
+                    file_name.pop()
+            elif 32 <= key <= 126:  # Printable ASCII characters
+                file_name.append(chr(key))
+        if len(file_name)>0:
+            file_name = "".join(file_name)
 
-        projects_dict = load_project(file_name)
-        new_project_dict = edit_projects(projects_dict, stdscr)
-        save(stdscr , name, new_project_dict)
+    projects_dict = load_project(file_name)
+    new_project_dict = edit_projects(projects_dict, stdscr)
+    save(stdscr , name, new_project_dict)
 
 if __name__ == "__main__":
     wrapper(main)
