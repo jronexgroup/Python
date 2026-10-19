@@ -68,10 +68,10 @@ def show_text(stdscr, current):
 
 
 #main code 
-def main(stdscr):
+def main(stdscr, name=0):
 
-    if len(sys.argv) > 1:
-        file_name = sys.argv[1]
+    if name != 0:
+        file_name = name
     
 
 

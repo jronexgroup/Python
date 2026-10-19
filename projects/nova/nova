@@ -1,48 +1,34 @@
 #!/usr/bin/env python3
-
+import fire
 import sys
 import subprocess
 from pathlib import Path
+import curses
+from curses import wrapper
+from new_project import main as new_project
+from list_projects import list_project
+from show_projects import main as show_project
+from edit_projects import main as edit_project
 
-# Find the directory containing this file
-BASE_DIR = Path(__file__).resolve().parent
+class project:
+    def add(self, name):
+        wrapper(new_project, name)
+ 
+    def list(self):
+        wrapper(list_project)
+   
+    def show(self, name=0):
+        wrapper(show_project, name)
 
-# Map commands to existing scripts
-COMMANDS = {
-    "show-p": "show-projects.py",
-    "new-p": "new-project.py",
-    "projects": "list_projects.py",
-    "edit-p": "edit-projects.py",
-}
-
-
-def main():
-    if len(sys.argv) == 1 or sys.argv[1] in ("--help", "-h", "help"):
-        print("Usage: nova <command> [arguments]")
-        print("Commands: show, np, list, edit")
-        return 0
-
-    command = sys.argv[1]
-
-    if command not in COMMANDS:
-        print(f"Unknown command: {command}", file=sys.stderr)
-        print("Available commands: show, np, list, edit")
-        return 2
-
-    script = BASE_DIR / COMMANDS[command]
-
-    if not script.is_file():
-        print(f"Script not found: {script}", file=sys.stderr)
-        return 1
-
-    # Forward all remaining arguments to the selected script
-    result = subprocess.run(
-        [sys.executable, str(script), *sys.argv[2:]],
-        cwd=BASE_DIR,
-    )
-
-    return result.returncode
-
-
+    def edit(self, name=0):
+        wrapper(edit_project, name)
+    
+    
+    
 if __name__ == "__main__":
-    raise SystemExit(main())
+    fire.Fire()
+
+
+
+
+

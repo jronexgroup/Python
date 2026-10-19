@@ -1,3 +1,6 @@
-import curses
-from curses import wrapper
-print(len("Enter New Complete Date: "))
+from pathlib import Path
+
+directory = Path("/home/rubai/Python/projects/nova")
+
+for entry in directory.iterdir():
+    print(entry.name)

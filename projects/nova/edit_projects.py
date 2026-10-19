@@ -159,9 +159,9 @@ def save(stdscr, name, project):
 
 
 
-def main(stdscr):
-    if len(sys.argv) > 1:
-            file_name = sys.argv[1]
+def main(stdscr, name=0):
+    if name != 0:
+        file_name = name
         
     
     

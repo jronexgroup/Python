@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 def new_project(stdscr, name):
-    stdscr.clear
+    stdscr.clear()
     stdscr.addstr(0,0,"###New Project###")
     stdscr.addstr(1,0,"Press Enter To Save.")
     #Get New Name
@@ -133,13 +133,13 @@ def save(name, project):
     f.close
 
 
-def main(stdscr):
+def main(stdscr, name):
 
 
-    if len(sys.argv) > 1:
-        name = sys.argv[1]
-    else:
-        name = input("Enter project name: ")
+    # if len(sys.argv) > 1:
+    #     name = sys.argv[1]
+    # else:
+    #     name = input("Enter project name: ")
     project = new_project(stdscr, name)
     save(project.get("Project Name"), project)
 if __name__ == "__main__":
