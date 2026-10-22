@@ -6,7 +6,7 @@ from pathlib import Path
 import curses
 from curses import wrapper
 from new_project import main as new_project
-from list_projects import list_project
+from list_projects import main as list_project
 from show_projects import main as show_project
 from edit_projects import main as edit_project
 

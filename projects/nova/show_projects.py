@@ -96,6 +96,7 @@ def main(stdscr, name=0):
             key = stdscr.getch()
 
             if key in (10, 13, curses.KEY_ENTER):
+                stdscr.clear()
                 break
 
             elif key in (curses.KEY_BACKSPACE, 127, 8):

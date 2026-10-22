@@ -2,7 +2,7 @@ import os
 import curses
 from curses import wrapper
 
-def list_project(stdscr):
+def main(stdscr):
     directory = "/home/rubai/Python/projects/nova/projects"
     stdscr.clear()
 
@@ -13,4 +13,4 @@ def list_project(stdscr):
 
     stdscr.getkey()
 if __name__ == "__main__":
-    wrapper(list_project)
+    wrapper(main)

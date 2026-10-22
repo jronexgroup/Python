@@ -3,6 +3,15 @@ from curses import wrapper
 import json
 import os 
 import pyfiglet
+from select_project import main as select_project
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+import show_projects
+import new_project
+import edit_projects
 import edit_projects
 import show_projects
 import new_project
@@ -17,6 +26,7 @@ def main(stdscr):
     banner = pyfiglet.figlet_format("NOVA")
     current = 0
     while True:
+        stdscr.clear()
         for i, line in enumerate(banner.splitlines()):
             stdscr.addstr(i + 1, 2, line,)
 
@@ -37,7 +47,9 @@ def main(stdscr):
         elif key == curses.KEY_UP and current !=0:
             current -= 1
         elif key in (10, 13, curses.KEY_ENTER):
-            break
+            if current == 1:
+                select_project(stdscr)
+                break
         elif key == 27:
             break
 
